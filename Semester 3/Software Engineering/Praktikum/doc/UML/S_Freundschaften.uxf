@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>20</x>
+      <y>0</y>
+      <w>880</w>
+      <h>640</h>
+    </coordinates>
+    <panel_attributes>obj=User~a ACTOR EXECUTION
+obj=App~b 
+obj=Webservice~c 
+obj=Datenbank~d 
+
+a-&gt;b : Freundschaftsanfrage senden; on=b
+b-&gt;c : Post /Friendship/{id}; on=c
+c-&gt;d : Insert Friendship; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b
+
+a-&gt;b : Freundschaft beenden; on=b
+b-&gt;c : Delete /Friendship/{id}; on=c
+c-&gt;d : Delete Friendship; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

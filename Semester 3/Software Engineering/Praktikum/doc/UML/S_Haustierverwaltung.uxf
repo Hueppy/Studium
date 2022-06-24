@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>20</x>
+      <y>0</y>
+      <w>600</w>
+      <h>900</h>
+    </coordinates>
+    <panel_attributes>obj=User~a ACTOR EXECUTION
+obj=App~b 
+obj=Webservice~c 
+obj=Datenbank~d 
+
+a-&gt;b : Haustier anlegen; on=b
+b-&gt;c : Post /Pet; on=c
+c-&gt;d : Insert Pet; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b
+
+a-&gt;b : Haustier bearbeiten; on=b
+b-&gt;c : Patch /Pet/{id}; on=c
+c-&gt;d : Update Pet; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b
+
+a-&gt;b : Haustier löschen; on=b
+b-&gt;c : Delete /Pet/{id}; on=c
+c-&gt;d : Delete Pet; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

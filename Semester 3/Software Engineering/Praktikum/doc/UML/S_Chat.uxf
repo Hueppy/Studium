@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>20</x>
+      <y>0</y>
+      <w>1320</w>
+      <h>1250</h>
+    </coordinates>
+    <panel_attributes>obj=User~a ACTOR EXECUTION
+obj=App~b 
+obj=Webservice~c 
+obj=Datenbank~d 
+
+a-&gt;b : Chatroom erstellen; on=b
+b-&gt;a ; on=a
+a-&gt;b : Benutzer hinzufügen; off=a
+b-&gt;c : Post /Chatroom; on=c
+c-&gt;d : Insert Chatroom; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b
+
+a-&gt;b : Nachricht schicken; on=b
+b-&gt;a ; on=a
+a-&gt;b : Nachrichttext; off=a
+b-&gt;c : Post /Chatroom/{id}/messages; on=c
+c-&gt;d : Insert Message; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b
+
+a-&gt;b : Nachricht löschen; on=b
+b-&gt;c : Delete /Chatroom/{id}/messages/{messageId}; on=c
+c-&gt;d : Delete Message; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b
+
+a-&gt;b : Nachrichten empfangen; on=b
+b-&gt;c : Get /Chatroom/{id}; on=c
+c-&gt;d : Select Chatroom; on=d
+d-&gt;c ; off=d
+c-&gt;d : Select Messages; on=d
+d-&gt;c ; off=d
+c-&gt;d : Update Messages; on=d
+d-&gt;c ; off=d
+c-&gt;b : Nachrichten; off=c
+b-&gt;a : Nachrichten; off=b</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

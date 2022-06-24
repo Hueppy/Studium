@@ -1,0 +1,64 @@
+<UserControl 
+    xmlns="https://github.com/avaloniaui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" 
+    x:Class="MegaMülldeponieMinden.Desktop.Views.VehiclesView">
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="auto" />
+    </Grid.ColumnDefinitions>
+
+    <DataGrid Grid.Column="0" Items="{Binding Vehicles}" SelectedItem="{Binding SelectedVehicle}">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+        <DataGridTextColumn Header="Model" Binding="{Binding Model}"/>
+        <DataGridTextColumn Header="Tankgröße" Binding="{Binding TankSize}"/>
+        <DataGridTextColumn Header="Kaufpreis" Binding="{Binding Price}"/>
+        <DataGridTextColumn Header="Führerschein" Binding="{Binding License}"/>
+      </DataGrid.Columns>
+    </DataGrid>
+
+    <StackPanel Grid.Column="1" Orientation="Vertical" Spacing="30">
+      <StackPanel Orientation="Horizontal">
+        <Button Command="{Binding Refresh}">Aktualisieren</Button>
+        <Button Command="{Binding Add}">Hinzufügen</Button>
+        <Button Command="{Binding Save}">Speichern</Button>
+        <Button Command="{Binding Delete}">Löschen</Button>
+      </StackPanel>
+
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto"/>
+          <ColumnDefinition Width="3"/>
+          <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+      
+        <TextBlock Classes="Property" Grid.Row="0" Text="Fuhrpark:"/>
+        <ComboBox Classes="Value" Grid.Row="0" Grid.Column="2" Items="{Binding Fleets}" SelectedItem="{Binding SelectedFleet}">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Name}"/>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBlock Classes="Property" Grid.Row="1" Text="Beschreibung:"/>
+        <TextBlock Classes="Value" Grid.Row="1" Text="{Binding SelectedFleet.Description}"/>
+        <TextBlock Classes="Property" Grid.Row="2" Text="Stellplätze:"/>
+        <TextBlock Classes="Value" Grid.Row="2" Text="{Binding SelectedFleet.Spaces}"/>
+      </Grid>
+
+    </StackPanel>    
+  </Grid>
+</UserControl>

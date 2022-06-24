@@ -1,0 +1,11 @@
+clang
+-Iinclude
+-Isrc
+-I../libs/base
+-I../libs/base/drivers
+-I../libs/startup
+-I../libs/wrap
+-D__riscv
+
+
+

@@ -1,0 +1,99 @@
+<UserControl 
+  xmlns="https://github.com/avaloniaui" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" 
+  x:Class="MegaMülldeponieMinden.Desktop.Views.EmployeesView">
+
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="auto" />
+    </Grid.ColumnDefinitions>
+
+    <DataGrid Grid.Column="0" Items="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+        <DataGridTextColumn Header="Vorname" Binding="{Binding FirstName}"/>
+        <DataGridTextColumn Header="Nachname" Binding="{Binding Name}"/>
+        <DataGridTextColumn Header="Geburtsdatum" Binding="{Binding Birthdate}"/>
+        <DataGridTextColumn Header="Führerschein" Binding="{Binding License}"/>
+        <DataGridTextColumn Header="Gehalt" Binding="{Binding Salary}"/>
+      </DataGrid.Columns>
+    </DataGrid>
+    
+    <StackPanel Grid.Column="1" Orientation="Vertical" Spacing="30">
+      <StackPanel Orientation="Horizontal">
+        <Button Command="{Binding Refresh}">Aktualisieren</Button>
+        <Button Command="{Binding Add}">Hinzufügen</Button>
+        <Button Command="{Binding Save}">Speichern</Button>
+        <Button Command="{Binding Delete}">Löschen</Button>
+      </StackPanel>
+            
+      <Grid DataContext="{Binding SelectedEmployee.Address}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="3" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Classes="Property" Text="Addresse:" />
+        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="3">
+            <TextBox Classes="Value" Text="{Binding Street}" />
+            <NumericUpDown Classes="Value" Value="{Binding StreetNumber}" />
+            <TextBox Classes="Value" Text="{Binding Addition}" />
+        </StackPanel>
+        <TextBlock Grid.Row="1" Classes="Property" Text="Ort:" />
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Spacing="3">
+            <NumericUpDown Classes="Value" Value="{Binding ZipCode}" />
+        </StackPanel>
+        <TextBlock Grid.Row="2" Classes="Property" Text="Land:" />
+        <TextBox Grid.Row="2" Classes="Value" Text="{Binding Country}" />
+      </Grid>
+      
+      <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="3" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Anstellung:" FontWeight="Bold" Margin="0,3"/>
+        <ComboBox Grid.Row="0" Grid.Column="2" Items="{Binding EmployeeKinds}" SelectedItem="{Binding SelectedEmployeeKind}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding SelectedEmployeeKind.Description}" MaxWidth="350" TextWrapping="Wrap"/>
+      </Grid>
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="3">
+        <TextBlock Classes="Property" Text="Vorgesetzter:"/>
+        <ComboBox Items="{Binding Employees}" SelectedItem="{Binding SelectedEmployee.Superior}">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal" Spacing="3">
+                <TextBlock Text="{Binding Id}"/>
+                <TextBlock Text="{Binding FirstName}"/>
+                <TextBlock Text="{Binding Name}"/>
+              </StackPanel>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+    </StackPanel>
+  </Grid>
+</UserControl>

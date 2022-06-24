@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>20</x>
+      <y>0</y>
+      <w>900</w>
+      <h>1380</h>
+    </coordinates>
+    <panel_attributes>obj=User~a ACTOR EXECUTION
+obj=App~b 
+obj=Webservice~c 
+obj=Datenbank~d 
+
+a-&gt;b : Registrieren; on=b
+b-&gt;c : Post /Login; on=c
+c-&gt;d : Insert Login; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;c : Post /Person; on=c
+c-&gt;d : Insert Person; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b
+
+a-&gt;b : Login; on=b
+b-&gt;c : Post /Session; on=c
+c-&gt;d : Select Login; on=d
+d-&gt;c : Login-Informationen; off=d
+c-&gt;d : Insert Session; on=d
+d-&gt;c ; off=d
+c-&gt;b : Session-Informationen; off=c
+b-&gt;a ; off=b
+
+a-&gt;b : Logout; on=b
+b-&gt;c : Delete /Session/{id}; on=c
+c-&gt;d : Delete Session; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b
+
+a-&gt;b : Mitgliedschaft pausieren; on=b
+b-&gt;c : Post /User/{id}/pause; on=c
+c-&gt;d : Update subscription; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b
+
+a-&gt;b : Account löschen; on=b
+b-&gt;c : Delete /User/{id}; on=c
+c-&gt;d : Delete User; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHGuide.Shared", "FHGuide.Shared\FHGuide.Shared.csproj", "{9AF33650-0C9C-4046-8C05-A19779BC33F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHGuide.Api", "FHGuide.Api\FHGuide.Api.csproj", "{88B8DC5B-4F62-44A1-AEBE-AA2EBF4074A7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9AF33650-0C9C-4046-8C05-A19779BC33F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AF33650-0C9C-4046-8C05-A19779BC33F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AF33650-0C9C-4046-8C05-A19779BC33F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AF33650-0C9C-4046-8C05-A19779BC33F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88B8DC5B-4F62-44A1-AEBE-AA2EBF4074A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88B8DC5B-4F62-44A1-AEBE-AA2EBF4074A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88B8DC5B-4F62-44A1-AEBE-AA2EBF4074A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88B8DC5B-4F62-44A1-AEBE-AA2EBF4074A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

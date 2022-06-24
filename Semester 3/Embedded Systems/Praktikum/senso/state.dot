@@ -1,0 +1,32 @@
+digraph G {
+	nodesep = 1.5
+	
+	Start [
+		color = black
+		label = ""
+		shape = circle
+		style = filled
+	]
+
+	node [
+		shape = record
+		style = rounded
+	]
+
+	Ready [ label = "Ready\l------------------------\nBlink leds from\lleft to right\l"]
+	Present [ label = "Present\l-----------------------\lBlink led pattern\l" ]
+	Repeat [ label = "Repeat\l---------------------------\lUser inputs pattern\lwith buttons\ltimeout input\lafter set time\l" ]
+	Loose [ label = "Loose\l-------------------------\lBlink yellow led\l5 times\lDisplay level\lin binary\l" ]
+	Transition [ label = "Transition\l-------------------------------------\lBlink green-yellow\land blue-red\lled alternately\lIncrease pattern length\lor\lDecrease repeat timeout\l" ]
+	End [ label = "End\l----------------------------------\lBlink all leds in\lshort-long-short-long\lpulses\l" ]
+
+	Start -> Ready
+	Ready -> Present [ label = "Green\nbutton\npressed" ] 
+	Present -> Repeat 
+	Repeat -> Loose [ label = "Wrong\ninput" ]
+	Repeat -> Transition [ label = "Correct\ninput" ]
+	Loose -> Ready
+	Transition -> Present [ label = "level < 15" ]
+	Transition -> End [ label = "Level = 15" ]
+	End -> Ready
+}

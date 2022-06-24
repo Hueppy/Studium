@@ -1,0 +1,111 @@
+<UserControl 
+    xmlns="https://github.com/avaloniaui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" 
+    x:Class="MegaMülldeponieMinden.Desktop.Views.RoutesView">
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="auto" />
+    </Grid.ColumnDefinitions>
+
+    <DataGrid Grid.Column="0" Items="{Binding Routes}" SelectedItem="{Binding SelectedRoute}">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+        <DataGridTextColumn Header="Beschreibung" Binding="{Binding Description}"/>
+        <DataGridTextColumn Header="Routenart" Binding="{Binding RouteKind}"/>
+      </DataGrid.Columns>
+    </DataGrid>
+
+    <StackPanel Grid.Column="1" Orientation="Vertical" Spacing="30">
+      <StackPanel Orientation="Horizontal">
+        <Button Command="{Binding Refresh}">Aktualisieren</Button>
+        <Button Command="{Binding Add}">Hinzufügen</Button>
+        <Button Command="{Binding Save}">Speichern</Button>
+        <Button Command="{Binding Delete}">Löschen</Button>
+      </StackPanel>
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="3">
+        <TextBlock Classes="Property" Text="Fahrer:"/>
+        <ComboBox Items="{Binding Employees}" SelectedItem="{Binding SelectedRoute.Employee}">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal" Spacing="3">
+                <TextBlock Text="{Binding Id}"/>
+                <TextBlock Text="{Binding FirstName}"/>
+                <TextBlock Text="{Binding Name}"/>
+              </StackPanel>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="3">
+        <TextBlock Classes="Property" Text="Fahrzeug:"/>
+        <ComboBox Items="{Binding Vehicles}" SelectedItem="{Binding SelectedRoute.Vehicle}">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal" Spacing="3">
+                <TextBlock Text="{Binding Name}"/>
+              </StackPanel>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto"/>
+          <ColumnDefinition Width="3"/>
+          <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+      
+        <TextBlock Classes="Property" Grid.Row="0" Text="Depot:"/>
+        <ComboBox Classes="Value" Grid.Row="0" Grid.Column="2" Items="{Binding Depots}" SelectedItem="{Binding SelectedDepot}">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Name}"/>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBlock Classes="Property" Grid.Row="1" Text="Größe:"/>
+        <TextBlock Classes="Value" Grid.Row="1" Text="{Binding SelectedDepot.Size}"/>
+        <TextBlock Classes="Property" Grid.Row="2" Text="Kapazität:"/>
+        <TextBlock Classes="Value" Grid.Row="2" Text="{Binding SelectedDepot.Capacity}"/>
+      </Grid>
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="3">
+        <TextBlock Classes="Property" Text="Fremdbetrieb:"/>
+        <ComboBox Items="{Binding ThirdParties}" SelectedItem="{Binding SelectedRoute.ThirdParty}">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal" Spacing="3">
+                <TextBlock Text="{Binding Name}"/>
+              </StackPanel>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+
+      <DataGrid Items="{Binding SelectedRoute.Addresses}" MinHeight="500">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="Street" Binding="{Binding Street}"/>
+          <DataGridTextColumn Header="Hausnummer" Binding="{Binding StreetNumber}"/>
+          <DataGridTextColumn Header="Zusatz" Binding="{Binding Addition}"/>         
+          <DataGridTextColumn Header="Postleitzahl" Binding="{Binding ZipCode}"/>    
+          <DataGridTextColumn Header="Land" Binding="{Binding Country}"/>     
+        </DataGrid.Columns>
+      </DataGrid>
+    </StackPanel>    
+  </Grid>
+</UserControl>

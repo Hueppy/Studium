@@ -1,0 +1,93 @@
+<UserControl 
+    xmlns="https://github.com/avaloniaui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" 
+    x:Class="MegaMülldeponieMinden.Desktop.Views.MaterialsView">
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="auto" />
+    </Grid.ColumnDefinitions>
+
+    <DataGrid Grid.Column="0" Items="{Binding Materials}" SelectedItem="{Binding SelectedMaterial}">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+        <DataGridTextColumn Header="Beschreibung" Binding="{Binding Description}"/>
+        <DataGridTextColumn Header="Menge" Binding="{Binding Amount}"/>
+        <DataGridTextColumn Header="Preis" Binding="{Binding Price}"/>
+        <DataGridCheckBoxColumn Header="Recyclebar" Binding="{Binding IsRecyclable}"/>
+      </DataGrid.Columns>
+    </DataGrid>
+
+    <StackPanel Grid.Column="1" Orientation="Vertical" Spacing="30">
+      <StackPanel Orientation="Horizontal">
+        <Button Command="{Binding Refresh}">Aktualisieren</Button>
+        <Button Command="{Binding Add}">Hinzufügen</Button>
+        <Button Command="{Binding Save}">Speichern</Button>
+        <Button Command="{Binding Delete}">Löschen</Button>
+      </StackPanel>
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="3">
+        <TextBlock Classes="Property" Text="Entsorgungsbestimmung:"/>
+        <ComboBox Items="{Binding DisposalRegulations}" SelectedItem="{Binding SelectedMaterial.DisposalRegulation}">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Name}"/>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="3">
+        <TextBlock Classes="Property" Text="Wertstoffart:"/>
+        <ComboBox Items="{Binding MaterialKinds}" SelectedItem="{Binding SelectedMaterial.MaterialKind}">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Name}"/>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="3">
+        <TextBlock Classes="Property" Text="Gefahrenstufe:"/>
+        <ComboBox Items="{Binding MaterialHazards}" SelectedItem="{Binding SelectedMaterial.MaterialHazard}">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Name}"/>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="3">
+        <TextBlock Classes="Property" Text="Material:"/>
+        <ComboBox Items="{Binding Materials}" SelectedItem="{Binding SelectedMaterial.Parent}">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal" Spacing="3">
+                <TextBlock Text="{Binding Id}"/>
+                <TextBlock Text="{Binding Name}"/>
+              </StackPanel>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="3">
+        <TextBlock Classes="Property" Text="Transportvorschrift:"/>
+        <ComboBox Items="{Binding TransportRegulations}" SelectedItem="{Binding SelectedMaterial.TransportRegulation}">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Name}"/>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+    </StackPanel>    
+  </Grid>
+</UserControl>

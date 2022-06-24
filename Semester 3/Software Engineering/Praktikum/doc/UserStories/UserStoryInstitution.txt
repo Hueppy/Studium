@@ -1,0 +1,13 @@
+Ich als Institution möchte für meine Tiere treffen organisieren und mögliche neue Besitzer zu finden.
+Meine Mitarbeiter sollen ebenfalls ein Profil haben, um die Tiere verwalten und als Ansprechpartner dienen zu können. 
+Um schnell passende Tiere für ein Treffen zu finden, soll das System regelmäßig Vorschläge machen. 
+Meine Mitarbeiter sollen nicht viel Arbeitszeit mit einer manuellen Suche aufwenden müssen.
+Um in Kontakt mit anderen Besitzern bleiben zu können, benötige ich ein Freundesystem und direkt Nachrichten. 
+
+
+Akzeptanzkriterien:
+	- Mehrere Haustierprofile anlegen und verwalten
+	- Automatische Vorschläge durch das System
+	- Freundesystem
+	- Weitere Benutzer in die eigene Organistion aufnehmen
+	- Verwalten von Haustierprofile durch unterschiedlichen Personen 

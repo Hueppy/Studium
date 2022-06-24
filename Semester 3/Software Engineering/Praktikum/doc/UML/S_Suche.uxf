@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>20</x>
+      <y>0</y>
+      <w>930</w>
+      <h>450</h>
+    </coordinates>
+    <panel_attributes>obj=User~a ACTOR EXECUTION
+obj=App~b 
+obj=Webservice~c 
+obj=Datenbank~d 
+
+a-&gt;b : Haustier suchen; on=b
+b-&gt;a ; on=a
+a-&gt;b : Suchbegriff; off=a
+b-&gt;c : Get /Search/Pet?query=; on=c
+c-&gt;d : Select Pet; on=d
+d-&gt;c : Haustier-Informationen; off=d
+c-&gt;b : Suchergebnis; off=c
+b-&gt;a : Suchergebnis; off=b
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

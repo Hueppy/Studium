@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:MegaMülldeponieMinden.Desktop.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="MegaMülldeponieMinden.Desktop.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="MegaMülldeponieMinden.Desktop">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <TabControl>
+      <TabControl.Styles>
+          <Style Selector="TextBlock.Property">
+              <Setter Property="Grid.Column" Value="0" />
+              <Setter Property="FontWeight" Value="Bold" />
+              <Setter Property="HorizontalAlignment" Value="Right" />
+              <Setter Property="VerticalAlignment" Value="Center" />
+          </Style>
+          <Style Selector="TextBlock.Value">
+              <Setter Property="Grid.Column" Value="2" />
+              <Setter Property="Margin" Value="0,6" />
+              <Setter Property="VerticalAlignment" Value="Center" />
+          </Style>
+          <Style Selector="TextBox.Value">
+              <Setter Property="Grid.Column" Value="2" />
+          </Style>
+          <Style Selector="DatePicker.Value">
+              <Setter Property="Grid.Column" Value="2" />
+          </Style>
+      </TabControl.Styles>
+
+      <TabItem Header="Personal">
+        <ContentControl Content="{Binding EmployeesViewModel}"/>
+      </TabItem>
+      <TabItem Header="Fahrzeuge">
+        <ContentControl Content="{Binding VehiclesViewModel}"/>        
+      </TabItem>
+      <TabItem Header="Wertstoffe">
+        <ContentControl Content="{Binding MaterialsViewModel}"/>             
+      </TabItem>
+      <TabItem Header="Route">
+        <ContentControl Content="{Binding RoutesViewModel}"/>
+      </TabItem>
+      
+    </TabControl>
+</Window>

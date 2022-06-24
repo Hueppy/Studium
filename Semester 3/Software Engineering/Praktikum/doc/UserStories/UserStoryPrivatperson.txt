@@ -1,0 +1,19 @@
+Ich als Privatperson möchte ich über das Portal mich mit anderen Haustierbesitzern aus meiner Region vernetzen,
+um für meine Tiere Freunde zu finden und treffen zu vereinbaren.
+Dafür möchte ich nach Präferenzen/Eigenschaften suchen, um geeignete Tiere finden zu können.
+In einer Merkliste kann ich die Suchergebnisse speichern.
+Außerdem soll das System mir auch automatisch generierte Vorschläge für mögliche Freunde/Tiere machen.
+Um Treffen zu organisieren, muss ich andere Haustierbesitzer anschreiben und Kontaktdaten austauschen können. 
+Damit ich nicht immer wieder Besitzer suchen muss, möchte ich anderen Benutzern Freundesanfragen schicken.
+Haustierprofile sollen nach einem Treffen bewertet werden können.
+Da ich mehrere Haustiere habe, muss ich für jedes Tier ein eigenes Profil anlegen können.
+Andere User, die sich daneben benehmen, möchte ich blockieren und melden können.
+
+
+Akzeptanzkriterien:
+	- Mehrere Haustierprofile anlegen und verwalten
+	- Tiere nach Präferenzen/Eigenschaften suchen
+	- Automatische Vorschläge durch das System
+	- Freundesystem
+	- Bewertung von Profilen
+	- Blockieren und Melden von Profilen

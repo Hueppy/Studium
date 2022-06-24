@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>20</x>
+      <y>390</y>
+      <w>670</w>
+      <h>840</h>
+    </coordinates>
+    <panel_attributes>obj=Admin~a ACTOR EXECUTION
+obj=App~b 
+obj=Webservice~c 
+obj=Datenbank~d 
+
+a-&gt;b : Meldungen prüfen; on=b
+b-&gt;c : Get /Reports; on=c
+c-&gt;d : Select Report; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b
+
+a-&gt;b : User sperren; on=b
+b-&gt;c : Post /User/{id}/lock; on=c
+c-&gt;d : Update User; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b
+
+a-&gt;b : User löschen; on=b
+b-&gt;c : Delete /User/{id}; on=c
+c-&gt;d : Delete User; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>20</x>
+      <y>0</y>
+      <w>730</w>
+      <h>380</h>
+    </coordinates>
+    <panel_attributes>obj=User~a ACTOR EXECUTION
+obj=App~b 
+obj=Webservice~c 
+obj=Datenbank~d 
+
+a-&gt;b : User melden; on=b
+b-&gt;c : Post /User/{id}/report; on=c
+c-&gt;d : Insert Report; on=d
+d-&gt;c ; off=d
+c-&gt;b ; off=c
+b-&gt;a ; off=b</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

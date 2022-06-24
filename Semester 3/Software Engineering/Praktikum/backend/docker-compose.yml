@@ -1,0 +1,22 @@
+version: '3.4'
+services:
+  db:
+    image: mariadb
+    hostname: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  webapp:
+    image: pfotenfreunde
+    restart: always
+    ports:
+      - 80:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DB_PASSWORD=example
+      - DB_SERVER=mysql
