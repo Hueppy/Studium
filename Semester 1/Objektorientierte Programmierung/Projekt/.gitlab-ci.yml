@@ -1,0 +1,28 @@
+image:
+  name: gradle:jdk15
+
+stages:
+  - build
+  - document
+
+build:
+  stage: build
+  script:
+    - ./gradlew build
+  artifacts:
+    paths:
+      - build/libs/*.jar
+    expire_in: 1 week
+
+document:
+  stage: document
+  script:
+    - export DEBIAN_FRONTEND=noninteractive
+    - apt-get update
+    - apt-get -y install --no-install-recommends graphviz
+    - ./gradlew javadoc    
+  artifacts:
+    paths:
+      - build/docs/*
+    expire_in: 1 week
+

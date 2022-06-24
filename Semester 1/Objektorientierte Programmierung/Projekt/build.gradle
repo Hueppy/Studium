@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'edu.phuentelmann'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+javadoc {
+    options.doclet = "edu.phuentelmann.danger.BasicDoclet"
+    options.docletpath = [file("build/libs/danger-1.0-SNAPSHOT.jar")]
+}
