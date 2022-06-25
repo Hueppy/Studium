@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Projektportal - Projektübersicht</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Projektportal">
+    <meta name="author" content="Fabian Pechta, Patrick Hüntelmann">
+    <link rel="stylesheet" media="all" href="common.css">
+    <link rel="stylesheet" media="all" href="overview.css">
+  </head>
+  <body>
+    <header id="top">
+      <picture>
+        <source media="(min-width: 1920px)" srcset="header1920x200.png">
+        <source media="(min-width: 1280px)" srcset="header1280x133.png">
+        <source media="(min-width:  640px)" srcset="header640x67.png">
+        <img src="header320x34.png" style="width: 100%"/>
+      </picture>
+      <nav>
+        <a href="index.html"><img src="home.svg" style="width: 16px">Starteite</a>
+        <a href="overview.html"><img src="overview.svg" style="width: 16px">Projektübersicht</a>
+        <a href="create.html"><img src="create.svg" style="width: 16px">Neues Projekt</a>
+      </nav>
+      <div class="login">
+        <h2>Login</h2>
+        <form>
+          <label for="username">Benutzername:</label><br>
+          <input type="text" id="username"/><br>
+          <label for="password">Passwort:</label><br>
+          <input type="password" id="password"/><br>
+          <input type="submit" value="Login"/>
+        </form>
+      </div>
+    </header>
+
+    <h1>Projektübersicht</h1>
+    <div>
+      <ul>
+        <li><a href="#project1">Projekt 1</a></li>
+        <li><a href="#project2">Projekt 2</a></li>
+        <li><a href="#project2">Projekt 2</a></li>
+        <li><a href="#project3">Projekt 3</a></li>
+        <li><a href="#project4">Projekt 4</a></li>
+        <li><a href="#project5">Projekt 5</a></li>
+        <li><a href="#project6">Projekt 6</a></li>
+        <li><a href="#project7">Projekt 7</a></li>
+        <li><a href="#project8">Projekt 8</a></li>
+      </ul>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Beschreibung</th>
+          <th>Datum</th>
+          <th>Actions</th>
+        </tr>
+        <tr id="project1">
+          <td class="title">Ada Lovelace</td>
+          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
+          <td>10. Dezember 1815</td>
+          <td>
+            <a href="project.html">Zur Projektseite</a>
+          </td>
+        </tr>
+        <tr id="project2">
+          <td class="title">Grace Hopper</td>
+          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
+          <td>9. Dezember 1906</td>
+          <td>
+            <a href="project.html">Zur Projektseite</a>
+          </td>
+        </tr>
+        <tr id="project3">
+          <td class="title">Magaret Hamilton</td>
+          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
+          <td>17. August 1936</td>
+          <td>
+            <a href="project.html">Zur Projektseite</a>
+          </td>
+        </tr>
+        <tr id="project4">
+          <td class="title">Joan Clarke</td>
+          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
+          <td>24. Juni 1917</td>
+          <td>
+            <a href="project.html">Zur Projektseite</a>
+          </td>
+        </tr>
+        <tr id="project5">
+          <td class="title">Ada Lovelace</td>
+          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
+          <td>10. Dezember 1815</td>
+          <td>
+            <a href="project.html">Zur Projektseite</a>
+          </td>
+        </tr>
+        <tr id="project6">
+          <td class="title">Grace Hopper</td>
+          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
+          <td>9. Dezember 1906</td>
+          <td>
+            <a href="project.html">Zur Projektseite</a>
+          </td>
+        </tr>
+        <tr id="project7">
+          <td class="title">Magaret Hamilton</td>
+          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
+          <td>17. August 1936</td>
+          <td>
+            <a href="project.html">Zur Projektseite</a>
+          </td>
+        </tr>
+        <tr id="project8">
+          <td class="title">Joan Clarke</td>
+          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
+          <td>24. Juni 1917</td>
+          <td>
+            <a href="project.html">Zur Projektseite</a>
+          </td>
+        </tr>
+        <tfoot>
+          <tr>
+            <td>
+              <select multiple="multiple">
+                <option value="ada">Ada Lovelace</option>
+                <option value="ada">Grace Hopper</option>
+                <option value="ada">Magaret Hamilton</option>
+                <option value="ada">Joan Clarke</option>
+              </select>
+            </td>
+            <td>
+            </td>
+            <td>
+              <input type="date"/><br>
+              <input type="date"/>
+            </td>
+            <td>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <button class="filter">Filter</button>
+      <button>Neues Projekt anlegen</button>
+    </div>
+    <p></p>
+    
+    <footer>
+      <a href="register.html">Registrieren</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="dsgvo.html">Datenschutzerklärung</a>
+      <a href="#top" class="top-link">Zurück zum Anfang</a>
+    </footer>
+  </body>
+</html>

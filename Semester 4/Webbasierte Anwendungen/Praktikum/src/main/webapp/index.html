@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TITLE_HOME</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Projektportal">
+    <meta name="author" content="Fabian Pechta, Patrick Hüntelmann">
+    <link rel="stylesheet" media="all" href="common.css">
+    <link rel="stylesheet" media="all" href="index.css">
+    <script src="common.js"></script>
+  </head>
+  <body>
+    <header id="top">
+      <picture>
+        <source media="(min-width: 1920px)" srcset="header1920x200.png">
+        <source media="(min-width: 1280px)" srcset="header1280x133.png">
+        <source media="(min-width:  640px)" srcset="header640x67.png">
+        <img src="header320x34.png" style="width: 100%"/>
+      </picture>
+      <nav>
+        <a href="index.html"><img src="home.svg" style="width: 16px">NAV_HOME</a>
+        <a href="overview.html"><img src="overview.svg" style="width: 16px">NAV_OVERVIEW</a>
+        <a href="create.html"><img src="create.svg" style="width: 16px">NAV_CREATE</a>
+      </nav>
+      <div class="login">
+        <h2>LOGIN</h2>
+        <form>
+          <label for="username">LOGIN_USERNAME</label><br>
+          <input type="text" id="username"/><br>
+          <label for="password">LOGIN_PASSWORD</label><br>
+          <input type="password" id="password"/><br>
+          <input type="submit" value="Login"/>
+        </form>
+      </div>
+    </header>
+
+    <h1 class="welcome1">WELCOME_FIRST</h1>
+    <h1 class="welcome2">WELCOME_SECOND</h1>
+    <div class="description">
+      <h2>WELCOME_DESCRIPTION</h2>
+      <p>WELCOME_DESCRIPTION_TEXT</p>
+      <video width="320" height="240" controls>
+        <source src="video.mp4" type="video/mp4">
+        WELCOME_VIDEO_PLAYBACK_NOT_SUPPORTED
+      </video>
+    </div>
+
+    <div class="projects">
+      <h2>NEW_PROJECTS</h2>
+      <table align="center" border="1" width="90%">
+        <tr>
+          <th>PROJECT_NAME</th>
+          <th>PROJECT_DATE</th>
+          <th>PROJECT_ACTIONS</th>
+        </tr>
+        <tr>
+          <td>Ada Lovelace</td>
+          <td>10. Dezember 1815</td>
+          <td>
+            <a href="project.html">PROJECT_PAGE_GOTO</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Grace Hopper</td>
+          <td>9. Dezember 1906</td>
+          <td>
+            <a href="project.html">PROJECT_PAGE_GOTO</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Magaret Hamilton</td>
+          <td>17. August 1936</td>
+          <td>
+            <a href="project.html">PROJECT_PAGE_GOTO</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Joan Clarke</td>
+          <td>24. Juni 1917</td>
+          <td>
+            <a href="project.html">PROJECT_PAGE_GOTO</a>
+          </td>
+        </tr>
+      </table>
+      <button>Neues Projekt anlegen</button>
+      <button>Zur Übersicht</button>
+    </div>
+    
+    <footer>
+      <a href="register.html">FOOTER_REGISTER</a>
+      <a href="impressum.html">FOOTER_IMPRINT</a>
+      <a href="dsgvo.html">FOOTER_PRIVACY</a>
+      <a href="#top" class="top-link">TOP_GOTO</a>
+    </footer>
+  </body>
+</html>

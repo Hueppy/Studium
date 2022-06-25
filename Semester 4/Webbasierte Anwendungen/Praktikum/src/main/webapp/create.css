@@ -1,0 +1,18 @@
+.project-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.project-head * {
+    margin: auto 0px;
+}
+
+#short_description {
+    width: 100%;
+}
+
+#long_description {
+    width: 100%;
+}

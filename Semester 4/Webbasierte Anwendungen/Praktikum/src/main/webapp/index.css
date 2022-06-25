@@ -1,0 +1,49 @@
+.welcome1 {
+    text-align: center;
+    animation: welcome1-fade linear 3s;
+    visibility: hidden;
+}
+
+.welcome2 {
+    text-align: center;
+    animation: welcome2-fade linear 6s;
+    visibility: visible;
+}
+
+@keyframes welcome1-fade {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes welcome2-fade {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    50% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.description {
+    position: absolute;
+    width: 50%;
+    
+}
+
+.projects {
+    position: absolute;              
+    width: 50%;
+    right: 0;       
+}

@@ -1,0 +1,19 @@
+table, th, td {
+    border: 1px solid;
+    margin: auto;
+}
+
+th, tfoot td {
+    background-color: #1B1C1D;
+    color: white;
+}
+
+.title {
+    font-size: 150%;
+}
+
+.short_description {
+    background-color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+}

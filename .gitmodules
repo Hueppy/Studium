@@ -1,0 +1,16 @@
+[submodule "Semester 4/Softwareprojekt/Projekt/Documentation"]
+	path = Semester 4/Softwareprojekt/Projekt/Documentation
+	url = git@github.com:SmartCity-2022/Documentation.git
+	branch = master
+[submodule "Semester 4/Softwareprojekt/Projekt/Service-Bildungsportal"]
+	path = Semester 4/Softwareprojekt/Projekt/Service-Bildungsportal
+	url = git@github.com:SmartCity-2022/Service-Bildungsportal.git
+	branch = master
+[submodule "Semester 4/Softwareprojekt/Projekt/Service-Bildungsportal.wiki"]
+	path = Semester 4/Softwareprojekt/Projekt/Service-Bildungsportal.wiki
+	url = git@github.com:SmartCity-2022/Service-Bildungsportal.wiki.git
+	branch = master
+[submodule "Semester 4/Betriebssysteme/Praktikum"]
+	path = Semester 4/Betriebssysteme/Praktikum
+	url = git@github.com:Hueppy/xv6.git
+	branch = develop

@@ -1,0 +1,54 @@
+.project-head {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#title {
+    background-color: #1B1C1D;
+    color: white;
+    font-size: 200%;
+    margin: auto;
+}
+
+#leader {
+    background-color: #1B1C1D;
+    color: white;
+    margin: auto;
+}
+
+.toc {
+    border-left: 3px solid fuchsia;
+    position: fixed;
+    top: 50%;
+    right: 0px;
+}
+
+.toc ul {
+    list-style-type: none;
+    padding-left: 0;
+    width: 200px;
+}
+
+.toc ul * {
+    background-color: black;
+    list-style-type: none;
+    padding-left: 0;
+    color: white;
+}
+
+.toc ul *:hover {
+     background-color: blueviolet;
+}
+
+#comment {
+    border: none;
+}
+
+#comment:focus {
+    border: 1px solid;
+}

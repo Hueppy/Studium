@@ -1,0 +1,77 @@
+version: '3.4'
+services:
+  db:
+    build: db
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 8000:8080
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 1s
+      timeout: 3s
+      retries: 30
+  authservice:
+    build: authservice
+    restart: always
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PASSWORD: guest
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_EXCHANGE: mainhub
+      PAYLOAD_SECRET: 1234
+  backend:
+    build: ../Service-Bildungsportal/backend
+    restart: always
+    depends_on:
+      - db
+      - authservice
+    ports:
+      - 8080:8080
+    environment:
+      DATABASE: education
+      DATABASE_HOST: db
+      DATABASE_PASSWORD: example
+      DATABASE_PORT: 3306
+      DATABASE_USER: root
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PASSWORD: guest
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_EXCHANGE: mainhub
+  frontend:
+    build:
+      context: ..
+      dockerfile: testing.Dockerfile
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - 80:3000
+    environment:
+      REACT_APP_BACKEND: http://localhost:8080
+#  cypress:
+#    build: cypress
+#    depends_on:
+#      - frontend
+#    environment:
+#      - CYPRESS_baseUrl=http://frontend:3000
+#      - CYPRESS_accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvb0BleGFtcGxlLmNvbSIsImlhdCI6MCwiZXhwIjo5OTk5OTk5OTk5OX0.z172EVR2ZFPoNYllEN3ivGxOoxgbqpsfvIJ9mQBPAFs

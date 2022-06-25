@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Projektportal - Neues Projekt</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Projektportal">
+    <meta name="author" content="Fabian Pechta, Patrick Hüntelmann">
+    <link rel="stylesheet" media="all" href="common.css">
+    <link rel="stylesheet" media="all" href="create.css">
+  </head>
+  <body>
+    <header id="top">
+      <picture>
+        <source media="(min-width: 1920px)" srcset="header1920x200.png">
+        <source media="(min-width: 1280px)" srcset="header1280x133.png">
+        <source media="(min-width:  640px)" srcset="header640x67.png">
+        <img src="header320x34.png" style="width: 100%"/>
+      </picture>
+      <nav>
+        <a href="index.html"><img src="home.svg" style="width: 16px">Starteite</a>
+        <a href="overview.html"><img src="overview.svg" style="width: 16px">Projektübersicht</a>
+        <a href="create.html"><img src="create.svg" style="width: 16px">Neues Projekt</a>
+      </nav>
+      <div class="login">
+        <h2>Login</h2>
+        <form>
+          <label for="username">Benutzername:</label><br>
+          <input type="text" id="username"/><br>
+          <label for="password">Passwort:</label><br>
+          <input type="password" id="password"/><br>
+          <input type="submit" value="Login"/>
+        </form>
+      </div>
+    </header>
+
+    <h1>Projekt</h1>
+    <div>
+      <form action="http://example.org" method="post">
+        <div class="project-head">
+            <img id="logo" src="logo.png"/>
+          <input id="title" name="title" type="text"><br>
+        </div>
+        <label for="startdate"/>Startdatum:<br>
+        <input id="startdate" name="startdate" type="date"><br>
+        <label for="enddate"/>Enddatum:<br>
+        <input id="enddate" name="enddate" type="date"><br>
+        <label for="short_description"/>Kurzbeschreibung:<br>
+        <textarea id="short_description" name="short_description" rows="3" cols="50">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.
+        </textarea><br>
+        <label for="long_description"/>Langbeschreibung:<br>
+        <textarea id="long_description" name="long_description" rows="10" cols="50">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Nam sit amet metus eu nulla porttitor viverra vel at leo.
+Duis convallis, lectus non dictum scelerisque, sapien diam rhoncus quam, et mollis nunc sem sed dui.
+Curabitur a elit eros. Suspendisse et ipsum nibh.
+Nunc sed tristique diam. Vestibulum lobortis mollis ipsum sit amet placerat.
+Duis tempus metus in dictum cursus.
+Curabitur nunc mauris, ultrices in lectus eu, rhoncus tempus nisl.
+Nunc dapibus lectus pharetra, feugiat ligula vitae, iaculis libero.
+Nam id volutpat ipsum. Nullam in ornare sapien.
+Nulla ullamcorper, lectus et aliquet venenatis, ipsum mauris molestie metus, a porta mi.
+        </textarea><br>
+        <label for="first_milestone"/>Erstes Projektziel:<br>
+        <input id="first_milestone" name="first_milestone" type="text"><br>
+        <label for="second_milestone"/>Zweites Projektziel:<br>
+        <input id="second_milestone" name="second_milestone" type="text"><br>
+
+        <input type="submit" value="Projekt anlegen">
+      </form>
+    </div>
+    <p></p>
+
+    <footer>
+        <a href="register.html">Registrieren</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="dsgvo.html">Datenschutzerklärung</a>
+        <a href="#top" class="top-link">Zurück zum Anfang</a>
+    </footer>
+  </body>
+</html>
