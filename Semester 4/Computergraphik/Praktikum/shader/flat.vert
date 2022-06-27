@@ -2,18 +2,22 @@
 
 in vec3 position;
 in vec3 color;
+in vec3 normal;
 
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
+uniform mat3 normalMatrix;
+uniform vec4 light;
 
-out vec3 fragmentColor;
-out vec3 viewPosition;
+flat out vec3 fragmentColor;
 
 void main()
 {
-	fragmentColor = color;
-	vec4 mpos = view * model * vec4(position,  1.0);
-	gl_Position = projection * mpos;
-	viewPosition = -mpos.xyz;
+    vec3  n     = normalize(normalMatrix * normal);
+ 	float fDiff = clamp(dot(n, light.xyz), 0.0, 1.0);
+
+    fragmentColor = color * fDiff;
+
+	gl_Position = projection * view * model * vec4(position,  1.0);
 }

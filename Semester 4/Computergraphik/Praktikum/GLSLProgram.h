@@ -59,6 +59,7 @@ namespace cg
 
 	public:
 		GLSLProgram(bool verbose = true); // simple error handling: output to console
+        GLSLProgram(GLSLProgram &program) = delete;
 		~GLSLProgram(void);
 
 		bool compileShaderFromFile  (const char* filename, GLSLShader::GLSLShaderType type);

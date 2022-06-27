@@ -4,7 +4,7 @@ project (Blatt01)
 set(OpenGL_GL_PREFERENCE GLVND)
 
 # list of source files to compile
-set(sources main.cpp GLSLProgram.cpp color.cpp color.h objects.h objects.cpp)
+set(sources main.cpp GLSLProgram.cpp color.cpp color.h objects.h objects.cpp ObjLoader.cpp ObjLoader.h)
 
 # find/include libraries
 find_package(OpenGL REQUIRED)
@@ -38,3 +38,5 @@ target_link_libraries(Blatt01 ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES} ${GLEW_LIBRA
 # copy the shader directory relative to the executable
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/shader
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/objects
+        DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

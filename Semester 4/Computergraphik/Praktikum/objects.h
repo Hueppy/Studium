@@ -7,6 +7,8 @@
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
+#include "GLSLProgram.h"
+#include "ObjLoader.h"
 
 /*
 Struct to hold data for object rendering.
@@ -18,46 +20,68 @@ public:
             : vao(0),
               positionBuffer(0),
               colorBuffer(0),
+              normalBuffer(0),
               indexBuffer(0),
-              initialized(false)
+              mode(GL_TRIANGLES)
     {}
 
     inline ~Object () { // GL context must exist on destruction
-        if (initialized) {
-            glDeleteVertexArrays(1, &vao);
-            glDeleteBuffers(1, &indexBuffer);
-            glDeleteBuffers(1, &colorBuffer);
-            glDeleteBuffers(1, &positionBuffer);
-            initialized = false;
-        }
+        glDeleteVertexArrays(1, &vao);
+        glDeleteBuffers(1, &indexBuffer);
+        glDeleteBuffers(1, &colorBuffer);
+        glDeleteBuffers(1, &positionBuffer);
     }
 
     void init();
-    void render(glm::mat4x4 model);
+    void render(glm::mat4x4 model, cg::GLSLProgram &program);
+    void from(ObjFile &objFile, cg::GLSLProgram &program);
+    void fromNormals(ObjFile &objFile, cg::GLSLProgram &program);
 
     GLuint vao;        // vertex-array-object ID
 
     GLuint positionBuffer; // ID of vertex-buffer: position
     GLuint colorBuffer;    // ID of vertex-buffer: color
+    GLuint normalBuffer;    // ID of vertex-buffer: color
 
     GLuint indexBuffer;    // ID of index-buffer
+    GLuint mode;
 
     GLsizei count;
-
-    bool initialized;
 
     glm::mat4x4 model; // model matrix
 };
 
-class Sphere : public Object {
-public:
-    void init(int n);
-    void update(int n);
+enum class Shading {
+    Flat,
+    Gouraud
 };
 
-class Axis : public Object {
+class Sphere {
 public:
-    void init(bool x, bool y, bool z, glm::vec3 color);
+    Object object;
+    Object objNormals;
+    Object objBounding;
+    cg::GLSLProgram flatShader;
+    cg::GLSLProgram gouraudShader;
+    cg::GLSLProgram simpleShader;
+    Shading shading;
+    bool renderNormals;
+    bool renderBounding;
+    bool hasNormals;
+    bool hasBounding;
+
+    bool init(int n, glm::vec3 color);
+    void update(int n, glm::vec3 color);
+    void updateBounding(glm::vec3 start, glm::vec3 stop);
+    void render(glm::mat4x4 model);
+};
+
+class Axis {
+public:
+    Object object;
+    cg::GLSLProgram program;
+
+    bool init(bool x, bool y, bool z, glm::vec3 color);
     void update(bool x, bool y, bool z, glm::vec3 color);
     void render(glm::mat4x4 model);
 };
