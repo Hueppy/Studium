@@ -34,7 +34,7 @@ bool loadShader(cg::GLSLProgram &p, const char *vertex, const char *fragment) {
 }
 
 void Object::init() {
-    // Step 0: Create vertex array object.
+    // Step 0: Create vertex array objSharp.
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &positionBuffer);
     glGenBuffers(1, &indexBuffer);
@@ -58,7 +58,7 @@ void Object::render(glm::mat4x4 model, cg::GLSLProgram &program) {
     program.setUniform("light", light);
     program.setUniform("lightI", lightI);
 
-    // Bind vertex array object so we can render the 1 triangle.
+    // Bind vertex array objSharp so we can render the 1 triangle.
     glBindVertexArray(vao);
     glDrawElements(mode, count, GL_UNSIGNED_SHORT, nullptr);
     glBindVertexArray(0);
@@ -91,7 +91,7 @@ void Object::from(ObjFile &objFile, cg::GLSLProgram &program) {
 
     glBindVertexArray(vao);
 
-    // Step 1: Create vertex buffer object for position attribute and bind it to the associated "shader attribute".
+    // Step 1: Create vertex buffer objSharp for position attribute and bind it to the associated "shader attribute".
     glBindBuffer(GL_ARRAY_BUFFER, positionBuffer);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), vertices.data(), GL_STATIC_DRAW);
 
@@ -100,7 +100,7 @@ void Object::from(ObjFile &objFile, cg::GLSLProgram &program) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Step 2: Create vertex buffer object for color attribute and bind it to...
+    // Step 2: Create vertex buffer objSharp for color attribute and bind it to...
     glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
     glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(glm::vec3), colors.data(), GL_STATIC_DRAW);
 
@@ -110,7 +110,7 @@ void Object::from(ObjFile &objFile, cg::GLSLProgram &program) {
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
     if (!objFile.normals.empty()) {
-        // Step 2: Create vertex buffer object for color attribute and bind it to...
+        // Step 2: Create vertex buffer objSharp for color attribute and bind it to...
         glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
         glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), normals.data(), GL_STATIC_DRAW);
 
@@ -120,11 +120,11 @@ void Object::from(ObjFile &objFile, cg::GLSLProgram &program) {
         glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
     }
 
-    // Step 3: Create vertex buffer object for indices. No binding needed here.
+    // Step 3: Create vertex buffer objSharp for indices. No binding needed here.
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLushort), indices.data(), GL_STATIC_DRAW);
 
-    // Unbind vertex array object (back to default).
+    // Unbind vertex array objSharp (back to default).
     glBindVertexArray(0);
 }
 
@@ -151,7 +151,7 @@ void Object::fromNormals(ObjFile &objFile, cg::GLSLProgram &program) {
 
     glBindVertexArray(vao);
 
-    // Step 1: Create vertex buffer object for position attribute and bind it to the associated "shader attribute".
+    // Step 1: Create vertex buffer objSharp for position attribute and bind it to the associated "shader attribute".
     glBindBuffer(GL_ARRAY_BUFFER, positionBuffer);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), vertices.data(), GL_STATIC_DRAW);
 
@@ -160,7 +160,7 @@ void Object::fromNormals(ObjFile &objFile, cg::GLSLProgram &program) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Step 2: Create vertex buffer object for color attribute and bind it to...
+    // Step 2: Create vertex buffer objSharp for color attribute and bind it to...
     glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
     glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(glm::vec3), colors.data(), GL_STATIC_DRAW);
 
@@ -169,11 +169,11 @@ void Object::fromNormals(ObjFile &objFile, cg::GLSLProgram &program) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Step 3: Create vertex buffer object for indices. No binding needed here.
+    // Step 3: Create vertex buffer objSharp for indices. No binding needed here.
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLushort), indices.data(), GL_STATIC_DRAW);
 
-    // Unbind vertex array object (back to default).
+    // Unbind vertex array objSharp (back to default).
     glBindVertexArray(0);
 
 }
@@ -197,7 +197,8 @@ bool Sphere::init(int n, glm::vec3 color) {
     hasNormals = true;
     renderBounding = false;
 
-    object.init();
+    objSharp.init();
+    objSmooth.init();
     objNormals.init();
     objBounding.init();
     update(n, color);
@@ -420,16 +421,17 @@ void Sphere::update(int n, glm::vec3 color) {
     for (int i = 0; i < normal_vertices.size(); i++) {
         normal_colors.emplace_back(glm::vec3(1.f, 0.f, 1.f));
     }
-    object.count = indices.size();
+    objSharp.count = indices.size();
+    objSmooth.count = indices.size();
     objNormals.count = normal_indices.size();
 
     GLuint programId = flatShader.getHandle();
     GLuint pos;
 
-    glBindVertexArray(object.vao);
+    glBindVertexArray(objSharp.vao);
 
-    // Step 1: Create vertex buffer object for position attribute and bind it to the associated "shader attribute".
-    glBindBuffer(GL_ARRAY_BUFFER, object.positionBuffer);
+    // Step 1: Create vertex buffer objSharp for position attribute and bind it to the associated "shader attribute".
+    glBindBuffer(GL_ARRAY_BUFFER, objSharp.positionBuffer);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), vertices.data(), GL_STATIC_DRAW);
 
     // Bind it to position.
@@ -437,12 +439,12 @@ void Sphere::update(int n, glm::vec3 color) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Step 3: Create vertex buffer object for indices. No binding needed here.
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, object.indexBuffer);
+    // Step 3: Create vertex buffer objSharp for indices. No binding needed here.
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objSharp.indexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLushort), indices.data(), GL_STATIC_DRAW);
 
-    // Step 2: Create vertex buffer object for color attribute and bind it to...
-    glBindBuffer(GL_ARRAY_BUFFER, object.colorBuffer);
+    // Step 2: Create vertex buffer objSharp for color attribute and bind it to...
+    glBindBuffer(GL_ARRAY_BUFFER, objSharp.colorBuffer);
     glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(glm::vec3), colors.data(), GL_STATIC_DRAW);
 
     // Bind it to color.
@@ -450,8 +452,8 @@ void Sphere::update(int n, glm::vec3 color) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Step 2: Create vertex buffer object for color attribute and bind it to...
-    glBindBuffer(GL_ARRAY_BUFFER, object.normalBuffer);
+    // Step 2: Create vertex buffer objSharp for color attribute and bind it to...
+    glBindBuffer(GL_ARRAY_BUFFER, objSharp.normalBuffer);
     glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), normals.data(), GL_STATIC_DRAW);
 
     // Bind it to color.
@@ -459,15 +461,15 @@ void Sphere::update(int n, glm::vec3 color) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Unbind vertex array object (back to default).
+    // Unbind vertex array objSharp (back to default).
     glBindVertexArray(0);
 
     programId = gouraudShader.getHandle();
 
-    glBindVertexArray(object.vao);
+    glBindVertexArray(objSmooth.vao);
 
-    // Step 1: Create vertex buffer object for position attribute and bind it to the associated "shader attribute".
-    glBindBuffer(GL_ARRAY_BUFFER, object.positionBuffer);
+    // Step 1: Create vertex buffer objSharp for position attribute and bind it to the associated "shader attribute".
+    glBindBuffer(GL_ARRAY_BUFFER, objSmooth.positionBuffer);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), vertices.data(), GL_STATIC_DRAW);
 
     // Bind it to position.
@@ -475,12 +477,12 @@ void Sphere::update(int n, glm::vec3 color) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Step 3: Create vertex buffer object for indices. No binding needed here.
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, object.indexBuffer);
+    // Step 3: Create vertex buffer objSharp for indices. No binding needed here.
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objSmooth.indexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLushort), indices.data(), GL_STATIC_DRAW);
 
-    // Step 2: Create vertex buffer object for color attribute and bind it to...
-    glBindBuffer(GL_ARRAY_BUFFER, object.colorBuffer);
+    // Step 2: Create vertex buffer objSharp for color attribute and bind it to...
+    glBindBuffer(GL_ARRAY_BUFFER, objSmooth.colorBuffer);
     glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(glm::vec3), colors.data(), GL_STATIC_DRAW);
 
     // Bind it to color.
@@ -488,8 +490,8 @@ void Sphere::update(int n, glm::vec3 color) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-    // Step 2: Create vertex buffer object for color attribute and bind it to...
-    glBindBuffer(GL_ARRAY_BUFFER, object.normalBuffer);
+    // Step 2: Create vertex buffer objSharp for color attribute and bind it to...
+    glBindBuffer(GL_ARRAY_BUFFER, objSmooth.normalBuffer);
     glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), normals.data(), GL_STATIC_DRAW);
 
     // Bind it to color.
@@ -497,14 +499,14 @@ void Sphere::update(int n, glm::vec3 color) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Unbind vertex array object (back to default).
+    // Unbind vertex array objSharp (back to default).
     glBindVertexArray(0);
 
     programId = simpleShader.getHandle();
 
     glBindVertexArray(objNormals.vao);
 
-    // Step 1: Create vertex buffer object for position attribute and bind it to the associated "shader attribute".
+    // Step 1: Create vertex buffer objSharp for position attribute and bind it to the associated "shader attribute".
     glBindBuffer(GL_ARRAY_BUFFER, objNormals.positionBuffer);
     glBufferData(GL_ARRAY_BUFFER, normal_vertices.size() * sizeof(glm::vec3), normal_vertices.data(), GL_STATIC_DRAW);
 
@@ -513,11 +515,11 @@ void Sphere::update(int n, glm::vec3 color) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Step 3: Create vertex buffer object for indices. No binding needed here.
+    // Step 3: Create vertex buffer objSharp for indices. No binding needed here.
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objNormals.indexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, normal_indices.size() * sizeof(GLushort), normal_indices.data(), GL_STATIC_DRAW);
 
-    // Step 2: Create vertex buffer object for color attribute and bind it to...
+    // Step 2: Create vertex buffer objSharp for color attribute and bind it to...
     glBindBuffer(GL_ARRAY_BUFFER, objNormals.colorBuffer);
     glBufferData(GL_ARRAY_BUFFER, normal_colors.size() * sizeof(glm::vec3), normal_colors.data(), GL_STATIC_DRAW);
 
@@ -526,15 +528,15 @@ void Sphere::update(int n, glm::vec3 color) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-    // Unbind vertex array object (back to default).
+    // Unbind vertex array objSharp (back to default).
     glBindVertexArray(0);
 }
 
 void Sphere::render(glm::mat4x4 model) {
     if (shading == Shading::Flat) {
-        object.render(model, flatShader);
+        objSharp.render(model, flatShader);
     } else {
-        object.render(model, gouraudShader);
+        objSmooth.render(model, gouraudShader);
     }
     if (renderNormals) {
         objNormals.render(model, simpleShader);
@@ -573,7 +575,7 @@ void Sphere::updateBounding(glm::vec3 start, glm::vec3 stop) {
 
     glBindVertexArray(objBounding.vao);
 
-    // Step 1: Create vertex buffer object for position attribute and bind it to the associated "shader attribute".
+    // Step 1: Create vertex buffer objSharp for position attribute and bind it to the associated "shader attribute".
     glBindBuffer(GL_ARRAY_BUFFER, objBounding.positionBuffer);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), vertices.data(), GL_STATIC_DRAW);
 
@@ -582,11 +584,11 @@ void Sphere::updateBounding(glm::vec3 start, glm::vec3 stop) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Step 3: Create vertex buffer object for indices. No binding needed here.
+    // Step 3: Create vertex buffer objSharp for indices. No binding needed here.
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, objBounding.indexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLushort), indices.data(), GL_STATIC_DRAW);
 
-    // Step 2: Create vertex buffer object for color attribute and bind it to...
+    // Step 2: Create vertex buffer objSharp for color attribute and bind it to...
     glBindBuffer(GL_ARRAY_BUFFER, objBounding.colorBuffer);
     glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(glm::vec3), colors.data(), GL_STATIC_DRAW);
 
@@ -595,7 +597,7 @@ void Sphere::updateBounding(glm::vec3 start, glm::vec3 stop) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-    // Unbind vertex array object (back to default).
+    // Unbind vertex array objSharp (back to default).
     glBindVertexArray(0);
 
 }
@@ -642,7 +644,7 @@ void Axis::update(bool x, bool y, bool z, glm::vec3 color) {
 
     glBindVertexArray(object.vao);
 
-    // Step 1: Create vertex buffer object for position attribute and bind it to the associated "shader attribute".
+    // Step 1: Create vertex buffer objSharp for position attribute and bind it to the associated "shader attribute".
     glBindBuffer(GL_ARRAY_BUFFER, object.positionBuffer);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), vertices.data(), GL_STATIC_DRAW);
 
@@ -651,11 +653,11 @@ void Axis::update(bool x, bool y, bool z, glm::vec3 color) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Step 3: Create vertex buffer object for indices. No binding needed here.
+    // Step 3: Create vertex buffer objSharp for indices. No binding needed here.
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, object.indexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLushort), indices.data(), GL_STATIC_DRAW);
 
-    // Step 2: Create vertex buffer object for color attribute and bind it to...
+    // Step 2: Create vertex buffer objSharp for color attribute and bind it to...
     glBindBuffer(GL_ARRAY_BUFFER, object.colorBuffer);
     glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(glm::vec3), colors.data(), GL_STATIC_DRAW);
 
@@ -664,7 +666,7 @@ void Axis::update(bool x, bool y, bool z, glm::vec3 color) {
     glEnableVertexAttribArray(pos);
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-    // Unbind vertex array object (back to default).
+    // Unbind vertex array objSharp (back to default).
     glBindVertexArray(0);
 }
 
@@ -675,7 +677,7 @@ void Axis::render(glm::mat4x4 model) {
     program.setUniform("view", view);
     program.setUniform("projection", projection);
 
-    // Bind vertex array object so we can render the 1 triangle.
+    // Bind vertex array objSharp so we can render the 1 triangle.
     glBindVertexArray(object.vao);
     glDrawElements(GL_LINES, object.count, GL_UNSIGNED_SHORT, nullptr);
     glBindVertexArray(0);

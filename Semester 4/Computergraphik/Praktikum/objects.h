@@ -11,7 +11,7 @@
 #include "ObjLoader.h"
 
 /*
-Struct to hold data for object rendering.
+Struct to hold data for objSharp rendering.
 */
 class Object
 {
@@ -37,7 +37,7 @@ public:
     void from(ObjFile &objFile, cg::GLSLProgram &program);
     void fromNormals(ObjFile &objFile, cg::GLSLProgram &program);
 
-    GLuint vao;        // vertex-array-object ID
+    GLuint vao;        // vertex-array-objSharp ID
 
     GLuint positionBuffer; // ID of vertex-buffer: position
     GLuint colorBuffer;    // ID of vertex-buffer: color
@@ -58,7 +58,8 @@ enum class Shading {
 
 class Sphere {
 public:
-    Object object;
+    Object objSharp;
+    Object objSmooth;
     Object objNormals;
     Object objBounding;
     cg::GLSLProgram flatShader;
@@ -68,7 +69,6 @@ public:
     bool renderNormals;
     bool renderBounding;
     bool hasNormals;
-    bool hasBounding;
 
     bool init(int n, glm::vec3 color);
     void update(int n, glm::vec3 color);

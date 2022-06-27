@@ -50,7 +50,7 @@ namespace cg
 	class GLSLProgram
 	{
 	private:
-	    GLuint handle;  // id/handle of program object
+	    GLuint handle;  // id/handle of program objSharp
 		std::string logString;       // compile log
 		std::vector<GLuint> shaders; // ids/handles of shaders
 		

@@ -49,5 +49,4 @@ void main()
     fragmentColor = ads(light, lightI,
 			vec3(0.1, 0.1, 0.1), vec3(0.7, 0.1, 0.1), vec3(1.0, 1.0, 1.0), 8.0,
 			eyePosition, eyeNormal);
-	//fragmentColor = normal;
 }

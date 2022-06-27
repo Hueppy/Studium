@@ -9,15 +9,16 @@ uniform mat4 view;
 uniform mat4 projection;
 uniform mat3 normalMatrix;
 uniform vec4 light;
+uniform float lightI;
 
 flat out vec3 fragmentColor;
 
 void main()
 {
-    vec3  n     = normalize(normalMatrix * normal);
+    vec3  n     = normalize(normalMatrix * -normal);
  	float fDiff = clamp(dot(n, light.xyz), 0.0, 1.0);
 
-    fragmentColor = color * fDiff;
+    fragmentColor = color * fDiff * lightI;
 
 	gl_Position = projection * view * model * vec4(position,  1.0);
 }

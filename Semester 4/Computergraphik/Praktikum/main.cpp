@@ -45,7 +45,7 @@ bool wireframe = false;
 
 glm::vec3 global_rotation(0.0f, 0.0f, 0.0f);
 glm::mat4 global(1.0f);
-glm::vec4 light(0.f, 1.f, 0.f, 0.f);
+glm::vec4 light(0.f, -1.f, 0.f, 0.f);
 float lightI = 1.f;
 
 class PlanetarySystem {
@@ -82,14 +82,16 @@ public:
     }
 
     void translate(glm::vec3 v) {
-        sphere.object.model = glm::translate(sphere.object.model, v);
+        sphere.objSharp.model = glm::translate(sphere.objSharp.model, v);
+        sphere.objSmooth.model = glm::translate(sphere.objSmooth.model, v);
         sphere.objNormals.model = glm::translate(sphere.objNormals.model, v);
         axis.object.model = glm::translate(axis.object.model, v);
         model = glm::translate(model, v);
     }
 
     void scale(glm::vec3 v) {
-        sphere.object.model = glm::scale(sphere.object.model, v);
+        sphere.objSharp.model = glm::scale(sphere.objSharp.model, v);
+        sphere.objSmooth.model = glm::scale(sphere.objSmooth.model, v);
         sphere.objNormals.model = glm::scale(sphere.objNormals.model, v);
         sphere.objBounding.model = glm::scale(sphere.objBounding.model, v);
     }
@@ -101,12 +103,18 @@ public:
     }
 
     void rotateLocal(glm::vec3 v) {
-        sphere.object.model = glm::rotate(sphere.object.model, v.x, glm::vec3(1.f, 0.f, 0.f));
-        sphere.object.model = glm::rotate(sphere.object.model, v.y, glm::vec3(0.f, 1.f, 0.f));
-        sphere.object.model = glm::rotate(sphere.object.model, v.z, glm::vec3(0.f, 0.f, 1.f));
+        sphere.objSharp.model = glm::rotate(sphere.objSharp.model, v.x, glm::vec3(1.f, 0.f, 0.f));
+        sphere.objSharp.model = glm::rotate(sphere.objSharp.model, v.y, glm::vec3(0.f, 1.f, 0.f));
+        sphere.objSharp.model = glm::rotate(sphere.objSharp.model, v.z, glm::vec3(0.f, 0.f, 1.f));
+        sphere.objSmooth.model = glm::rotate(sphere.objSmooth.model, v.x, glm::vec3(1.f, 0.f, 0.f));
+        sphere.objSmooth.model = glm::rotate(sphere.objSmooth.model, v.y, glm::vec3(0.f, 1.f, 0.f));
+        sphere.objSmooth.model = glm::rotate(sphere.objSmooth.model, v.z, glm::vec3(0.f, 0.f, 1.f));
         sphere.objNormals.model = glm::rotate(sphere.objNormals.model, v.x, glm::vec3(1.f, 0.f, 0.f));
         sphere.objNormals.model = glm::rotate(sphere.objNormals.model, v.y, glm::vec3(0.f, 1.f, 0.f));
         sphere.objNormals.model = glm::rotate(sphere.objNormals.model, v.z, glm::vec3(0.f, 0.f, 1.f));
+        sphere.objBounding.model = glm::rotate(sphere.objBounding.model, v.x, glm::vec3(1.f, 0.f, 0.f));
+        sphere.objBounding.model = glm::rotate(sphere.objBounding.model, v.y, glm::vec3(0.f, 1.f, 0.f));
+        sphere.objBounding.model = glm::rotate(sphere.objBounding.model, v.z, glm::vec3(0.f, 0.f, 1.f));
     }
 
     void shading(Shading shading) {
@@ -171,7 +179,7 @@ bool init() {
 
 
     ObjLoader loader;
-    auto obj = loader.load("objects/suzanne.obj");
+    auto obj = loader.load("objects/bigguy.obj");
     glm::vec3 max(std::numeric_limits<float>::min());
     glm::vec3 min(std::numeric_limits<float>::max());
     for (auto &vertex: obj.vertices) {
@@ -183,7 +191,8 @@ bool init() {
         min.z = std::min(min.z, vertex.z);
     }
 
-    sun.sphere.object.from(obj, sun.sphere.flatShader);
+    sun.sphere.objSharp.from(obj, sun.sphere.flatShader);
+    sun.sphere.objSmooth.from(obj, sun.sphere.gouraudShader);
     if (obj.normals.empty()) {
         sun.sphere.hasNormals = false;
     } else {
