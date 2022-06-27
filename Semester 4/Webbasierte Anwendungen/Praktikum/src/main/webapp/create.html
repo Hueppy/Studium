@@ -7,6 +7,8 @@
     <meta name="author" content="Fabian Pechta, Patrick Hüntelmann">
     <link rel="stylesheet" media="all" href="common.css">
     <link rel="stylesheet" media="all" href="create.css">
+    <script src="common.js"></script>
+    <script src="create.js"></script>
   </head>
   <body>
     <header id="top">
@@ -23,19 +25,19 @@
       </nav>
       <div class="login">
         <h2>Login</h2>
-        <form>
+          <form id="loginform">
           <label for="username">Benutzername:</label><br>
           <input type="text" id="username"/><br>
           <label for="password">Passwort:</label><br>
           <input type="password" id="password"/><br>
-          <input type="submit" value="Login"/>
+          <input type="submit" id="login" value="Login"/>
         </form>
       </div>
     </header>
 
     <h1>Projekt</h1>
     <div>
-      <form action="http://example.org" method="post">
+      <form id="createform">
         <div class="project-head">
             <img id="logo" src="logo.png"/>
           <input id="title" name="title" type="text"><br>

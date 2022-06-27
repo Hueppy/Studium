@@ -15,7 +15,7 @@ import java.time.Duration;
 @Table(name = "projectartifact")
 @NamedQueries({
         @NamedQuery(name = "ProjectArtifact.all", query = "select p from ProjectArtifact p"),
-        @NamedQuery(name = "ProjectArtifact.single", query = "select p from ProjectArtifact p where p.id = :id")
+        @NamedQuery(name = "ProjectArtifact.single", query = "select p from ProjectArtifact p where p.projectId = :id")
 })
 public class ProjectArtifact {
     @Id

@@ -7,6 +7,8 @@
     <meta name="author" content="Fabian Pechta, Patrick Hüntelmann">
     <link rel="stylesheet" media="all" href="common.css">
     <link rel="stylesheet" media="all" href="project.css">
+    <script src="common.js"></script>
+    <script src="project.js"></script>
   </head>
   <body>
     <header id="top">
@@ -23,12 +25,12 @@
       </nav>
       <div class="login">
         <h2>Login</h2>
-        <form>
+        <form id="loginform">
           <label for="username">Benutzername:</label><br>
           <input type="text" id="username"/><br>
           <label for="password">Passwort:</label><br>
           <input type="password" id="password"/><br>
-          <input type="submit" value="Login"/>
+          <input type="submit" id="login" value="Login"/>
         </form>
       </div>
     </header>
@@ -43,11 +45,11 @@
       <strong>Startdatum:</strong> 12 März 2022<br>
       <strong>Enddatum:</strong> 1 Juni 2022
       <h2 id="short_description">Kurzbeschreibung</h2>
-      <p>
+      <p id="short_description_text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.
       </p>
       <h2 id="long_description">Langbeschreibung</h2>
-      <p>
+      <p id="long_description_text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Nam sit amet metus eu nulla porttitor viverra vel at leo.
         Duis convallis, lectus non dictum scelerisque, sapien diam rhoncus quam, et mollis nunc sem sed dui.
@@ -70,7 +72,7 @@
           <li><a href="#logo">Logo</a></li>
           <li><a href="#title">Titel</a></li>
           <li><a href="#short_description">Kurzbeschreibung</a></li>
-          <li><a href="#long_description">Langbeschreibung</a></li>
+          <li id="toc_description"><a href="#long_description">Langbeschreibung</a></li>
           <li><a href="#comments">Kommentare</a></li>
         </ul>
       </div>
@@ -78,7 +80,8 @@
 
     <h2 id="comments">Kommentare</h2>
     <div>
-      <form action="comment.html" method="post">
+      <p id="lastcomment"></p>
+      <form id="commentform" action="comment.html" method="post">
         <label for="points">Punkte:</label><br>
         <input id="points" name="points" type="range" min="1" max="5"><br>
         <label for="comment">Kommentar:</label><br>

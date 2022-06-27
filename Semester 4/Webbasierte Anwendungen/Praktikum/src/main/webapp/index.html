@@ -8,6 +8,7 @@
     <link rel="stylesheet" media="all" href="common.css">
     <link rel="stylesheet" media="all" href="index.css">
     <script src="common.js"></script>
+    <script src="index.js"></script>
   </head>
   <body>
     <header id="top">
@@ -24,12 +25,12 @@
       </nav>
       <div class="login">
         <h2>LOGIN</h2>
-        <form>
+        <form id="loginform">
           <label for="username">LOGIN_USERNAME</label><br>
           <input type="text" id="username"/><br>
           <label for="password">LOGIN_PASSWORD</label><br>
           <input type="password" id="password"/><br>
-          <input type="submit" value="Login"/>
+          <input type="submit" id="login" value="Login"/>
         </form>
       </div>
     </header>
@@ -47,39 +48,11 @@
 
     <div class="projects">
       <h2>NEW_PROJECTS</h2>
-      <table align="center" border="1" width="90%">
+      <table id="overviewtable" align="center" border="1" width="90%">
         <tr>
           <th>PROJECT_NAME</th>
           <th>PROJECT_DATE</th>
           <th>PROJECT_ACTIONS</th>
-        </tr>
-        <tr>
-          <td>Ada Lovelace</td>
-          <td>10. Dezember 1815</td>
-          <td>
-            <a href="project.html">PROJECT_PAGE_GOTO</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Grace Hopper</td>
-          <td>9. Dezember 1906</td>
-          <td>
-            <a href="project.html">PROJECT_PAGE_GOTO</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Magaret Hamilton</td>
-          <td>17. August 1936</td>
-          <td>
-            <a href="project.html">PROJECT_PAGE_GOTO</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Joan Clarke</td>
-          <td>24. Juni 1917</td>
-          <td>
-            <a href="project.html">PROJECT_PAGE_GOTO</a>
-          </td>
         </tr>
       </table>
       <button>Neues Projekt anlegen</button>

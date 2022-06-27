@@ -22,7 +22,9 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
-    private String description;
+    private String shortDescription;
+    @Column(columnDefinition="TEXT")
+    private String longDescription;
     private String logoPath;
     private LocalDateTime date;
 
@@ -42,12 +44,20 @@ public class Project {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getShortDescription() {
+        return shortDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getLongDescription() {
+        return longDescription;
+    }
+
+    public void setLongDescription(String longDescription) {
+        this.longDescription = longDescription;
     }
 
     public String getLogoPath() {

@@ -10,7 +10,8 @@ class Artifact {
 class Project {
     id;
     title;
-    description;
+    shortDescription;
+    longDescription;
     logoPath;
     date;
     artifacts;
@@ -28,21 +29,21 @@ class ProjectSortKey {
     static RunTime = 1;
 }
 
+function calculateRunTime(artifacts) {
+    let sum = 0
+    for (const artifact in artifacts) {
+        sum += artifact.plannedTime;
+    }
+    return sum;
+}
+
 class ProjectSorter {
     key = ProjectSortKey.StartDate;
 
-    calculateRunTime(artifacts) {
-        let sum = 0
-        for (const artifact in artifacts) {
-            sum += artifact.plannedTime;
-        }
-        return sum;
-    }
-
     sortProjects(projects) {
-        let compare = (a, b) => b.date - a.date
+        let compare = (a, b) => a.date.localeCompare(b.date)
         if (this.key === ProjectSortKey.RunTime) {
-            compare = (a, b) => this.calculateRunTime(b.artifacts) - this.calculateRunTime(a.artifacts)
+            compare = (a, b) => calculateRunTime(b.artifacts) - calculateRunTime(a.artifacts)
         }
 
         projects.sort(compare)
@@ -174,13 +175,25 @@ class ArtifactApi extends BaseApi {
 
 class ProjectArtifactApi extends BaseApi {
     constructor() {
-        super(`${BASEURL}/artifact`);
+        super(`${BASEURL}/projectartifact`);
     }
 }
 
 class ProjectApi extends BaseApi {
     constructor() {
         super(`${BASEURL}/project`);
+
+        this.projectArtifactApi = new ProjectArtifactApi()
+        this.artifactApi = new ArtifactApi()
+    }
+
+    async all() {
+        const projects = await super.all();
+        for (const project of projects) {
+            const projectArtifacts = await this.projectArtifactApi.single(project.id).catch(_ => [])
+            project.artifacts = await Promise.all(projectArtifacts.map(async x => await this.artifactApi.single(x.artifactId)))
+        }
+        return projects
     }
 }
 
@@ -200,6 +213,47 @@ class ScopeApi extends BaseApi {
     }
 }
 
+function updateLogin() {
+    const cookies = document.cookie.split('; ')
+    const usernameCookie = cookies
+        .find(x => x.startsWith('username'))
+        ?.split('=')
+    const passwordCookie = cookies
+        .find(x => x.startsWith('password'))
+        ?.split('=')
+
+    const username = document.getElementById('username')
+    const password = document.getElementById('password')
+
+    const login = document.getElementById('login')
+    if (usernameCookie && passwordCookie) {
+        login.value = 'Logout'
+        username.disabled = true;
+        password.disabled = true;
+    } else {
+        login.value = 'Login'
+        username.disabled = false;
+        password.disabled = false;
+    }
+}
+
+function doLoginSubmit(event) {
+    event.preventDefault()
+    const login = document.getElementById('login')
+    console.log(login)
+
+    if (login.value === 'Login') {
+        const username = document.getElementById('username')
+        const password = document.getElementById('password')
+        document.cookie = `username=${username.value}`
+        document.cookie = `password=${password.value}`
+    } else {
+        document.cookie = 'username=;expires=Thu, 01 Jan 1970 00:00:01 GMT'
+        document.cookie = 'password=;expires=Thu, 01 Jan 1970 00:00:01 GMT'
+    }
+
+    updateLogin();
+}
 
 let translator = new Translator();
 
@@ -207,6 +261,23 @@ if (navigator.language.startsWith('de')) {
     translator.language = Translator.GERMAN
 }
 
+window.addEventListener('load', function () {
+    for (const node of document.querySelectorAll('*')) {
+        if (node.text) {
+            node.text = translator.translate(node.text)
+        } else {
+            for (const child of node.childNodes) {
+                if (child.nodeType === Node.TEXT_NODE)
+                    child.nodeValue = translator.translate(child.nodeValue)
+            }
+        }
+    }
+
+    updateLogin()
+
+    const form = document.getElementById('loginform');
+    form.addEventListener('submit', doLoginSubmit);
+})
 
 async function testApi() {
     const projectApi = new ProjectApi()

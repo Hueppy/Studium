@@ -7,6 +7,8 @@
     <meta name="author" content="Fabian Pechta, Patrick Hüntelmann">
     <link rel="stylesheet" media="all" href="common.css">
     <link rel="stylesheet" media="all" href="overview.css">
+    <script src="common.js"></script>
+    <script src="overview.js"></script>
   </head>
   <body>
     <header id="top">
@@ -23,12 +25,12 @@
       </nav>
       <div class="login">
         <h2>Login</h2>
-        <form>
+        <form id="loginform">
           <label for="username">Benutzername:</label><br>
           <input type="text" id="username"/><br>
           <label for="password">Passwort:</label><br>
           <input type="password" id="password"/><br>
-          <input type="submit" value="Login"/>
+          <input type="submit" id="login" value="Login"/>
         </form>
       </div>
     </header>
@@ -46,76 +48,12 @@
         <li><a href="#project7">Projekt 7</a></li>
         <li><a href="#project8">Projekt 8</a></li>
       </ul>
-      <table>
+      <table id="overviewtable">
         <tr>
           <th>Name</th>
           <th>Beschreibung</th>
           <th>Datum</th>
           <th>Actions</th>
-        </tr>
-        <tr id="project1">
-          <td class="title">Ada Lovelace</td>
-          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
-          <td>10. Dezember 1815</td>
-          <td>
-            <a href="project.html">Zur Projektseite</a>
-          </td>
-        </tr>
-        <tr id="project2">
-          <td class="title">Grace Hopper</td>
-          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
-          <td>9. Dezember 1906</td>
-          <td>
-            <a href="project.html">Zur Projektseite</a>
-          </td>
-        </tr>
-        <tr id="project3">
-          <td class="title">Magaret Hamilton</td>
-          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
-          <td>17. August 1936</td>
-          <td>
-            <a href="project.html">Zur Projektseite</a>
-          </td>
-        </tr>
-        <tr id="project4">
-          <td class="title">Joan Clarke</td>
-          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
-          <td>24. Juni 1917</td>
-          <td>
-            <a href="project.html">Zur Projektseite</a>
-          </td>
-        </tr>
-        <tr id="project5">
-          <td class="title">Ada Lovelace</td>
-          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
-          <td>10. Dezember 1815</td>
-          <td>
-            <a href="project.html">Zur Projektseite</a>
-          </td>
-        </tr>
-        <tr id="project6">
-          <td class="title">Grace Hopper</td>
-          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
-          <td>9. Dezember 1906</td>
-          <td>
-            <a href="project.html">Zur Projektseite</a>
-          </td>
-        </tr>
-        <tr id="project7">
-          <td class="title">Magaret Hamilton</td>
-          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
-          <td>17. August 1936</td>
-          <td>
-            <a href="project.html">Zur Projektseite</a>
-          </td>
-        </tr>
-        <tr id="project8">
-          <td class="title">Joan Clarke</td>
-          <td class="short_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim.</td>
-          <td>24. Juni 1917</td>
-          <td>
-            <a href="project.html">Zur Projektseite</a>
-          </td>
         </tr>
         <tfoot>
           <tr>

@@ -46,7 +46,7 @@ public class ProjectArtifactResource {
         try {
             TypedQuery<ProjectArtifact> query = em.createNamedQuery("ProjectArtifact.single", ProjectArtifact.class);
             query.setParameter("id", id);
-            ProjectArtifact p = query.getSingleResult();
+            List<ProjectArtifact> p = query.getResultList();
 
             rb = Response.ok();
             rb.entity(p);
