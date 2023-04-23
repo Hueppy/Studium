@@ -1,0 +1,16 @@
+<h1>Dozent</h1>
+<table>
+  <tr>
+    <th>Vorname</th>
+    <th>Nachname</th>
+    <th>Aktionen</th>
+  </tr>
+  <% @course.each do |lecturer| %>
+  <tr>
+    <td><%= lecturer.first_name %></td>
+    <td><%= lecturer.last_name %></td>
+    <td><%= button_to "Delete", lecturer_path(lecturer), :method => "delete" %></td>
+  </tr>
+  <% end %>
+</table>
+<%= link_to "Hinzufügen", new_lecturer_path %>

@@ -1,0 +1,17 @@
+<h1>Module</h1>
+<table>
+  <tr>
+    <th>Titel</th>
+    <th>Beschreibung</th>
+    <th>Dozent</th>
+  </tr>
+  <% @courses.each do |course| %>
+  <tr>
+    <td><%= course.title %></td>
+    <td><%= course.description %></td>
+    <td><%= Lecturer.find(course.lecturer_id).last_name %></td>
+    <td><%= button_to "Delete", course_path(course), :method => "delete" %></td>
+  </tr>
+  <% end %>
+</table>
+<%= link_to "Hinzufügen", new_course_path %>

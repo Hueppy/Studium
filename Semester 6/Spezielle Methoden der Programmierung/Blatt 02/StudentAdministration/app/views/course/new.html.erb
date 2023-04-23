@@ -1,0 +1,20 @@
+<h1>Neues Modul</h1>
+
+<%= form_with url: course_index_path, model: @course do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </div>
+  <div>
+    <%= form.label :lecturer %><br>
+    <%= collection_select(:course, :lecturer_id, Lecturer.all, :id, :last_name) %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

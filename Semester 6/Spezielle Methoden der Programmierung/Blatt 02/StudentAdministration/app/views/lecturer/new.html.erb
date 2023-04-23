@@ -1,0 +1,16 @@
+<h1>Neuer Dozent</h1>
+
+<%= form_with url: lecturer_index_path, model: @course do |form| %>
+  <div>
+    <%= form.label :first_name %><br>
+    <%= form.text_field :first_name %>
+  </div>
+  <div>
+    <%= form.label :last_name %><br>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

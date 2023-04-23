@@ -1,0 +1,29 @@
+<h1>Neuer Student</h1>
+
+<%= form_with model: @student do |form| %>
+  <div>
+    <%= form.label :matrikel %><br>
+    <%= form.text_field :matrikel %>
+    <% @student.errors.full_messages_for(:matrikel).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :first_name %><br>
+    <%= form.text_field :first_name %>
+    <% @student.errors.full_messages_for(:first_name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :last_name %><br>
+    <%= form.text_field :last_name %>
+    <% @student.errors.full_messages_for(:first_name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
